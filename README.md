@@ -59,5 +59,36 @@ smartspend-ai/
 ```
 
 ## Status
-🚧 Day 2 — environment set up, database seeded, SQL safety guard in place,
+ Day 2 — environment set up, database seeded, SQL safety guard in place,
 first LLM API call wired and tested.
+
+
+## Status
+
+✅ Day 3 Complete
+
+Current capabilities:
+
+- Natural language → SQL generation using Groq (Llama 3.1 8B)
+- SQL safety validation with allowlisted tables
+- Query execution against SQLite finance database
+- Interactive Streamlit interface
+- Plotly visualizations
+- AI-generated analyst summaries
+- Suggested follow-up questions
+- Session-state persistence for smooth interactions
+- User feedback buttons (yes/no)
+
+Pipeline:
+
+User Question
+→ NL to SQL
+→ SQL Validation
+→ Query Execution
+→ Analyst Summary Generation
+→ Charts + Insights
+
+Next milestone (Day 4):
+- Improve SQL quality and robustness
+- Expand evaluation dataset
+- Add memory and richer visualizations
