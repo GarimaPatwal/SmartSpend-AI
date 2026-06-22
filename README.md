@@ -59,5 +59,5 @@ smartspend-ai/
 ```
 
 ## Status
-🚧 Day 2 — environment set up, database seeded, SQL safety guard in place,
+Day 2 — environment set up, database seeded, SQL safety guard in place,
 first LLM API call wired and tested.
