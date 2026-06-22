@@ -29,6 +29,9 @@ Rules:
 - Only SELECT statements. Never write INSERT, UPDATE, DELETE, DROP, or any DDL.
 - Do not include explanations, markdown, or comments — output raw SQL only.
 - Use SQLite-compatible syntax (e.g., date functions like strftime).
+- When using JOINs, ALWAYS qualify ambiguous column names with their table name
+  (e.g., use budget_rules.category instead of just category in GROUP BY and SELECT).
+- Always use table aliases for clarity in JOINs (e.g., t for transactions, b for budget_rules).
 """
 
 
