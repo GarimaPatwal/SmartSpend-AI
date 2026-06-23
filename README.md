@@ -65,7 +65,7 @@ first LLM API call wired and tested.
 
 ## Status
 
-✅ Day 3 Complete
+ Day 3 Complete
 
 Current capabilities:
 
@@ -92,3 +92,31 @@ Next milestone (Day 4):
 - Improve SQL quality and robustness
 - Expand evaluation dataset
 - Add memory and richer visualizations
+
+## Day 4 — API Optimization & Evaluation
+
+### What was added
+- **Response caching** (`src/cache.py`): SQL results are cached to `data/sql_cache.json` by question hash. Repeated questions skip the API entirely and return instantly (shown as ⚡ in the UI).
+- **Exponential backoff** (`src/nl_to_sql.py`): Rate limit errors from Groq are retried automatically with increasing wait times (2s → 4s → 8s + jitter), up to 3 attempts before failing gracefully.
+- **Latency display** (`src/app.py`): Every pipeline step now shows its execution time in the status bar. Total response time is shown as a badge above results.
+- **Pipeline evaluator** (`src/evaluator.py`): Automated test runner that evaluates all 10 questions end-to-end and saves a scored report to `data/eval_results.json`.
+
+### Day 4 Baseline Evaluation Results
+Run on 2026-06-23 against the seeded demo database:
+
+| Metric | Result |
+|---|---|
+| SQL generated | 10 / 10 |
+| Queries executed | 10 / 10 |
+| Non-empty results | 10 / 10 |
+| Average latency | 0.21s per question |
+
+### How to run the evaluator
+```bash
+python src/evaluator.py
+```
+
+### How to run the app
+```bash
+streamlit run src/app.py
+```
