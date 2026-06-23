@@ -1,0 +1,16 @@
+{
+  "5e090ec230ec4283": "SELECT SUM(amount) FROM transactions WHERE category = 'Groceries'",
+  "f2681b9c385d32db": "SELECT txn_id, date, amount, category, merchant, account_id \nFROM transactions \nWHERE date >= DATE('now', '-7 days')",
+  "5aeca31b7d41684a": "SELECT b.category, b.monthly_budget, SUM(t.amount) AS total_spent \nFROM budget_rules b \nJOIN transactions t ON b.category = t.category \nWHERE strftime('%Y-%m', t.date) = strftime('%Y-%m', 'now') \nGROUP BY b.category \nHAVING SUM(t.amount) > b.monthly_budget",
+  "017e1ce7db688ad9": "SELECT category, SUM(amount) AS total_spending\nFROM transactions\nWHERE category IN ('Groceries', 'Dining', 'Transport', 'Entertainment', 'Utilities', 'Shopping', 'Health', 'Travel', 'Subscriptions', 'Rent')\nGROUP BY category\nORDER BY total_spending DESC\nLIMIT 5",
+  "05af628a1c9a37cd": "SELECT category, AVG(amount) AS avg_amount FROM transactions GROUP BY category",
+  "00365ce2f45f5c30": "SELECT merchant FROM transactions GROUP BY merchant ORDER BY COUNT(merchant) DESC LIMIT 1",
+  "d9f9f8e1c3a83fab": "SELECT \n  SUM(CASE WHEN t.category = 'Dining' THEN t.amount ELSE 0 END) AS dining,\n  SUM(CASE WHEN t.category = 'Groceries' THEN t.amount ELSE 0 END) AS groceries\nFROM \n  transactions t\nWHERE \n  strftime('%Y-%m', t.date) = strftime('%Y-%m', 'now')",
+  "eeead38d14ef62ed": "SELECT a.account_name, SUM(t.amount) AS total_spending \nFROM transactions t \nJOIN accounts a ON t.account_id = a.account_id \nGROUP BY a.account_name",
+  "8a577afcf846e8e5": "SELECT SUM(t.amount) \nFROM transactions t \nJOIN budget_rules b ON t.category = b.category \nWHERE t.date >= DATE('now', '-30 days') AND b.category = 'Travel'",
+  "a328605630d36097": "SELECT txn_id FROM transactions WHERE amount > 100",
+  "a29b04120cd91915": "SELECT SUM(amount) FROM transactions WHERE date >= DATE('now', '-7 days')",
+  "7d6a96963da817fa": "SELECT SUM(CASE WHEN t.category = 'Groceries' THEN t.amount ELSE 0 END) AS groceries,\n       SUM(CASE WHEN t.category = 'Dining' THEN t.amount ELSE 0 END) AS dining,\n       SUM(CASE WHEN t.category = 'Transport' THEN t.amount ELSE 0 END) AS transport\nFROM transactions t\nWHERE strftime('%Y-%m', t.date) >= strftime('%Y-%m', date('now', '-3 months'))",
+  "162ce066a231c316": "SELECT DISTINCT t.category, t.merchant \nFROM transactions t \nJOIN budget_rules b ON t.category = b.category \nWHERE t.category = 'Dining'",
+  "4d944b1bd2882c34": "SELECT merchant \nFROM transactions \nWHERE category = 'Dining' AND merchant NOT IN ('Zaatar w Zeit', 'Local Cafe', 'Starbucks')"
+}
